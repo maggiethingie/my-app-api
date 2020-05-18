@@ -9,6 +9,7 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const deleteaccount = require('./controllers/deleteaccount');
 const changepassword = require('./controllers/changepassword');
+const showlistings = require('./controllers/showlistings');
 
 const db = knex({
 	client: 'pg',
@@ -43,6 +44,9 @@ app.put('/changepassword', (req, res) => {
 // app.put('/delete/:id', (req, res) => {
 app.put('/delete', (req, res) => {
 	deleteaccount.handleDeleteAccount(req, res, db) })
+
+app.get('/showlistings/:region', (req, res) => {
+	showlistings.handleShowListings(req, res, db) })
 
 app.get('/profile/:id', profile.handleProfileGet(db) )
 
